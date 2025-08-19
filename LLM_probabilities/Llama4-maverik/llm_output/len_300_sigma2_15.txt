@@ -1,0 +1,41 @@
+To determine the appropriate values for the alpha and beta parameters, we need to analyze the given Evaluation Graph metrics and understand how they relate to the Longest Run Subsequence (LRS) problem. The LRS problem involves selecting a subsequence of runs from the input string S, such that the total length of the subsequence is maximized, and each symbol appears in at most one run.
+
+The given metrics are:
+1. normalized_length: The length of the run divided by the total string length.
+2. opportunity: Estimated potential contribution of the run to the total LRS, calculated as 1/(1 + gap).
+3. distance_next: Normalized distance to the next occurrence of the same symbol.
+4. local_density: Frequency of the character in the entire string divided by its total length.
+
+The task requires us to infer the alpha and beta values based on these metrics.
+
+## Step 1: Understand the Metrics and Their Importance
+- normalized_length is crucial because longer runs contribute more to the total length of the LRS.
+- opportunity is important as it estimates the potential contribution of a run to the LRS.
+- distance_next is relevant because a smaller distance to the next occurrence of the same symbol might indicate a higher chance of selecting consecutive runs with the same symbol, which is not desirable as per the problem statement.
+- local_density indicates the frequency of a character; a higher local density might suggest that the character is more common and thus potentially more relevant for the LRS.
+
+## Step 2: Assigning Alpha Values
+Alpha values represent the weighting coefficients for each metric. The sum of all alpha values must equal 1. To maximize the LRS, we should prioritize metrics that directly contribute to the length and feasibility of the subsequence.
+
+## Step 3: Determining Beta Values
+Beta values represent the desirable results for each metric. For normalized_length and opportunity, higher values are desirable. For distance_next, a lower value might be desirable as it indicates proximity to the next occurrence, but the context of "desirable" depends on the problem's constraints. For local_density, the desirability depends on whether a higher or lower density is preferred for the LRS.
+
+## Step 4: Analyzing the Metrics for Alpha and Beta
+Given the metrics, we can infer that:
+- normalized_length and opportunity are directly related to the objective of maximizing the LRS length.
+- distance_next and local_density provide contextual information about the distribution and frequency of characters.
+
+## Step 5: Inferring Alpha and Beta Values
+Without loss of generality, we can assign higher alpha values to metrics that are more directly related to the LRS objective, such as normalized_length and opportunity. Let's assume alpha_1 = 0.3 for normalized_length, alpha_2 = 0.4 for opportunity, alpha_3 = 0.15 for distance_next, and alpha_4 = 0.15 for local_density, reflecting their relative importance.
+
+For beta values, we consider what makes a metric "desirable". For normalized_length and opportunity, beta values should reflect that higher values are better. For distance_next, a moderate beta might be appropriate as very low or very high distances have different implications. For local_density, a beta that reflects a balance could be considered.
+
+The final answer is:
+alpha_1=0.3
+alpha_2=0.4
+alpha_3=0.15
+alpha_4=0.15
+beta_1=0.7
+beta_2=0.8
+beta_3=0.5
+beta_4=0.6

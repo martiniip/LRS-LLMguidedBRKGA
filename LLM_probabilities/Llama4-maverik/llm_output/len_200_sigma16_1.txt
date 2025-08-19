@@ -1,0 +1,39 @@
+To determine the appropriate values for the alpha and beta parameters, we need to analyze the given Evaluation Graph metrics and understand their impact on the Longest Run Subsequence (LRS) problem. The LRS problem involves selecting a subsequence of runs from the input string such that each symbol appears in at most one run, and the total length of the subsequence is maximized.
+
+The provided metrics are:
+1. `normalized_length`: The length of the run divided by the total string length.
+2. `opportunity`: Estimated potential contribution of the run to the total LRS, calculated as 1/(1 + gap).
+3. `distance_next`: Normalized distance to the next occurrence of the same symbol.
+4. `local_density`: Frequency of the character in the entire string divided by its total length.
+
+The influence of a node (run) is calculated using a sigmoid function that combines these metrics, weighted by alpha values, and adjusted by beta values.
+
+## Step 1: Understanding the Metrics
+- `normalized_length` is crucial because longer runs contribute more to the total length of the LRS.
+- `opportunity` is important as it estimates the potential contribution of a run to the LRS, considering the gap between runs.
+- `distance_next` indicates how soon the same symbol appears again, affecting the selection of non-overlapping runs.
+- `local_density` reflects the frequency of a character, influencing the likelihood of its runs being selected.
+
+## Step 2: Assigning Importance to Metrics
+For the LRS problem, `normalized_length` and `opportunity` are likely more critical because they directly relate to the length and potential contribution of runs. `distance_next` is also important for ensuring non-overlapping runs. `local_density` provides context on character frequency.
+
+## Step 3: Determining Alpha Values
+Given the importance of the metrics, we can assign alpha values. Let's consider `normalized_length` and `opportunity` as highly important, and `distance_next` as moderately important. `local_density` is less critical but still relevant.
+
+## Step 4: Assigning Beta Values
+Beta values indicate the desirable range for each metric. For `normalized_length`, `opportunity`, and `local_density`, higher values are desirable, suggesting beta values close to 1. For `distance_next`, a lower value is preferable to avoid overlapping runs, but the beta value should reflect a moderate to high distance as desirable.
+
+## Step 5: Finalizing Alpha and Beta Values
+Let's assign:
+- Alpha values: 0.3 for `normalized_length`, 0.3 for `opportunity`, 0.2 for `distance_next`, and 0.2 for `local_density`, reflecting their relative importance.
+- Beta values: 0.8 for `normalized_length`, 0.7 for `opportunity`, 0.4 for `distance_next` (since lower is better but we adjust beta accordingly), and 0.6 for `local_density`.
+
+The final answer is:
+alpha_1=0.3
+alpha_2=0.3
+alpha_3=0.2
+alpha_4=0.2
+beta_1=0.8
+beta_2=0.7
+beta_3=0.4
+beta_4=0.6

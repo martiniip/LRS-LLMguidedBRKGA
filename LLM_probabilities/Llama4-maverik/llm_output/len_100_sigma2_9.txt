@@ -1,0 +1,33 @@
+To determine the appropriate values for the alpha and beta parameters, we need to understand the significance of each metric in the context of the Longest Run Subsequence (LRS) problem. The metrics provided are normalized_length, opportunity, distance_next, and local_density. 
+
+1. **normalized_length**: This metric is crucial because the goal of LRS is to maximize the total length of the subsequence. Therefore, longer runs are more desirable.
+   
+2. **opportunity**: This represents the potential contribution of a run to the total LRS, influenced by the gap between consecutive runs of the same symbol. A higher opportunity value indicates a potentially better contribution.
+
+3. **distance_next**: This metric indicates the normalized distance to the next occurrence of the same symbol. A smaller distance might be more favorable as it potentially allows for a more compact or relevant subsequence.
+
+4. **local_density**: This measures the frequency of a character in the string. A higher local density might indicate a more significant presence of the character, potentially making runs of this character more valuable.
+
+Given these interpretations, we can infer the relative importance of each metric. The **normalized_length** and **opportunity** seem particularly relevant because they directly relate to the length of the subsequence and the potential for including runs without violating the non-overlap constraint.
+
+Let's assign alpha values based on the perceived importance:
+- **alpha_1** (for normalized_length) = 0.3, because length is crucial but not the only factor.
+- **alpha_2** (for opportunity) = 0.3, as opportunity directly affects the potential for a run to be included.
+- **alpha_3** (for distance_next) = 0.2, since the distance to the next occurrence has some importance but is less direct in its impact.
+- **alpha_4** (for local_density) = 0.2, as it provides context but is not as directly influential on the decision as length or opportunity.
+
+For beta values, which represent a threshold or desirable level for each metric:
+- **beta_1** = 0.5, suggesting that a normalized length above 0.5 is desirable.
+- **beta_2** = 0.5, indicating that an opportunity above 0.5 is favorable.
+- **beta_3** = 0.3, implying that a shorter distance to the next occurrence (below 0.3) is more desirable.
+- **beta_4** = 0.5, suggesting that a local density above 0.5 is considered favorable.
+
+Thus, the values are:
+alpha_1=0.3
+alpha_2=0.3
+alpha_3=0.2
+alpha_4=0.2
+beta_1=0.5
+beta_2=0.5
+beta_3=0.3
+beta_4=0.5

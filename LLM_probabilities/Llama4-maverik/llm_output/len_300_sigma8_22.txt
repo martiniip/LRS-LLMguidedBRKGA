@@ -1,0 +1,29 @@
+To determine the appropriate values for the alpha and beta parameters, we need to analyze the given Evaluation Graph metrics and understand their impact on the Longest Run Subsequence (LRS) problem. The LRS problem involves selecting a subsequence of runs from the input string such that each symbol appears in at most one run, and the total length of the subsequence is maximized.
+
+The given metrics are:
+1. normalized_length: The length of the run divided by the total string length.
+2. opportunity: Estimated potential contribution of the run to the total LRS, calculated as 1/(1 + gap).
+3. distance_next: Normalized distance to the next occurrence of the same symbol.
+4. local_density: Frequency of the character in the entire string divided by its total length.
+
+The influence of a node (N) is calculated using the equation:
+\[ \text{Influence(N)} = \text{sigmoid}\left(\alpha_1 \cdot (1 - (\beta_1 - normalized-length)) + \alpha_2 \cdot (1 - (\beta_2 - opportunity)) + \alpha_3 \cdot (1 - (\beta_3 - distance-next)) + \alpha_4 \cdot (1 - (\beta_4 - local_density))\right) \]
+
+To maximize the influence, the alpha values should be distributed such that they reflect the relative importance of each metric, and the beta values should be such that they represent the desirable range for each metric.
+
+Given the nature of the LRS problem, we can infer the following:
+- A higher normalized_length is desirable as it contributes more to the total length.
+- A higher opportunity is desirable as it indicates a higher potential contribution to the LRS.
+- A lower distance_next might be desirable as it indicates closer subsequent occurrences, potentially allowing for a longer subsequence.
+- A higher local_density might be desirable as it indicates a more frequent character, potentially contributing more to the LRS.
+
+Let's assign values based on these inferences and the constraint that \(\sum_{i=1}^{4} \alpha_i = 1\).
+
+alpha_1=0.3
+alpha_2=0.4
+alpha_3=0.1
+alpha_4=0.2
+beta_1=0.7
+beta_2=0.8
+beta_3=0.3
+beta_4=0.6

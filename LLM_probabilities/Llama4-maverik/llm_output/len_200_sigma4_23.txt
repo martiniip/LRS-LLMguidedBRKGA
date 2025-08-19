@@ -1,0 +1,40 @@
+To determine the appropriate values for the alpha and beta parameters, we need to analyze the given data and understand the influence of each metric on the selection process for the Longest Run Subsequence problem.
+
+1. **Understanding the Metrics**:
+   - `normalized_length`: The length of the run divided by the total string length. A higher value is generally more desirable as it indicates a longer run.
+   - `opportunity`: Estimated potential contribution of the run to the total LRS, calculated as $1/(1 + gap)$. A higher value indicates a better opportunity.
+   - `distance_next`: Normalized distance to the next occurrence of the same symbol. A lower value is desirable as it indicates the next occurrence is closer.
+   - `local_density`: Frequency of the character in the entire string divided by its total length. A higher value might be more desirable as it indicates a more frequent character.
+
+2. **Analyzing the Metrics' Influence**:
+   - For `normalized_length`, higher values are better. Thus, $\beta_1$ should be close to 1, indicating that values close to 1 are desirable.
+   - For `opportunity`, higher values are better. So, $\beta_2$ should also be close to 1.
+   - For `distance_next`, lower values are better. Hence, $\beta_3$ should be close to 0, indicating that lower values are favorable.
+   - For `local_density`, the influence is less straightforward but generally, a higher value could be considered better or more relevant. Thus, $\beta_4$ could be close to 1.
+
+3. **Assigning Alpha Values**:
+   - The sum of all $\alpha_i$ must equal 1. The relative importance of each metric can guide the distribution. For instance, if `opportunity` and `normalized_length` are considered more important, they should have higher $\alpha$ values.
+
+Given the problem's constraints and the need to maximize the total length of the subsequence while ensuring that each symbol appears in at most one run, we can infer that `normalized_length` and `opportunity` are crucial. Let's assign higher importance to `opportunity` and `normalized_length`, moderate to `local_density`, and less to `distance_next` due to its indirect relation to the primary goal.
+
+Let's consider:
+- $\alpha_1 = 0.3$ for `normalized_length`
+- $\alpha_2 = 0.4$ for `opportunity` as it's directly related to the potential contribution
+- $\alpha_3 = 0.1$ for `distance_next` as it's less directly related to the primary goal
+- $\alpha_4 = 0.2$ for `local_density` as it provides context on character frequency
+
+And for beta values:
+- $\beta_1 = 0.9$ to favor higher `normalized_length`
+- $\beta_2 = 0.9$ to favor higher `opportunity`
+- $\beta_3 = 0.1$ to favor lower `distance_next`
+- $\beta_4 = 0.8$ to favor higher `local_density`
+
+Thus, the values are:
+alpha_1=0.3
+alpha_2=0.4
+alpha_3=0.1
+alpha_4=0.2
+beta_1=0.9
+beta_2=0.9
+beta_3=0.1
+beta_4=0.8

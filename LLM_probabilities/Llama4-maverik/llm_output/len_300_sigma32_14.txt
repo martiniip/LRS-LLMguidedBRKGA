@@ -1,0 +1,31 @@
+To determine the appropriate values for the alpha and beta parameters, we need to analyze the given data and understand how each metric influences the selection process for the Longest Run Subsequence (LRS) problem.
+
+1. **Understanding the Metrics**:
+   - **normalized_length**: The length of a run divided by the total string length. A higher value is generally more desirable as it contributes more to the total length of the LRS.
+   - **opportunity**: Estimated potential contribution of the run to the total LRS, calculated as 1/(1 + gap). A higher opportunity value indicates a potentially greater contribution to the LRS.
+   - **distance_next**: Normalized distance to the next occurrence of the same symbol. A smaller distance might be more favorable as it indicates closer subsequent occurrences, potentially allowing for a longer subsequence.
+   - **local_density**: Frequency of the character in the string. A higher local density might be favorable as it indicates a more frequent character, potentially contributing to a longer subsequence.
+
+2. **Analyzing the Influence Equation**:
+   The given equation calculates the influence of a node based on the sigmoid function of a linear combination of the metrics. The sigmoid function maps the input to a value between 0 and 1, representing the probability or influence of a node.
+
+3. **Determining Alpha and Beta Values**:
+   - **Alpha (\(\alpha\)) values** represent the relative importance of each metric. The sum of all \(\alpha\) values must be 1.
+   - **Beta (\(\beta\)) values** are the desirable or target values for each metric, indicating where the favorable outcomes lie.
+
+Given the LRS problem's nature, a run with a higher **normalized_length** and **opportunity** is generally more desirable. **distance_next** and **local_density** also play crucial roles as they affect the potential for subsequent runs and the character's frequency.
+
+For a balanced approach:
+- Assign higher \(\alpha\) values to **normalized_length** and **opportunity** as they directly relate to the length and potential contribution of a run.
+- Consider moderate \(\alpha\) values for **distance_next** and **local_density** as they are also important but slightly less direct in their influence.
+
+Let's consider a distribution where **opportunity** and **normalized_length** are given more weight, and **distance_next** and **local_density** are given relatively less but still significant weight.
+
+alpha_1=0.2
+alpha_2=0.4
+alpha_3=0.2
+alpha_4=0.2
+beta_1=0.5
+beta_2=0.3
+beta_3=0.2
+beta_4=0.4

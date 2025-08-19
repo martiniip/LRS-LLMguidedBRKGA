@@ -1,0 +1,30 @@
+To determine the appropriate values for the alpha and beta parameters, we need to analyze the given Evaluation Graph metrics and understand how they influence the selection process for the Longest Run Subsequence (LRS) problem.
+
+1. **Understanding the Metrics**:
+   - `normalized_length`: The length of the run divided by the total string length. A higher value is more desirable as it contributes more to the total length of the LRS.
+   - `opportunity`: Estimated potential contribution of the run to the total LRS, calculated as $1/(1 + gap)$. A higher value indicates a better opportunity.
+   - `distance_next`: Normalized distance to the next occurrence of the same symbol. A lower value is preferable as it indicates closer subsequent occurrences, potentially allowing for a longer subsequence.
+   - `local_density`: Frequency of the character in the entire string divided by its total length. A higher value might indicate a more significant presence of the character, potentially influencing the LRS.
+
+2. **Analyzing the Influence Equation**:
+   The given equation calculates the influence of a node based on the sigmoid function of a linear combination of the metrics. The sigmoid function maps the input to a value between 0 and 1, representing the probability of a node being included in the LRS.
+
+3. **Determining Alpha and Beta Values**:
+   - **Alpha ($\alpha$) values** represent the weighting coefficients for each metric. The sum of all $\alpha$ values must equal 1. To maximize the LRS, we should prioritize `normalized_length` and `opportunity` as they directly relate to the length and potential contribution of a run.
+   - **Beta ($\beta$) values** indicate the desirable range for each metric. For `normalized_length`, `opportunity`, and `local_density`, higher values are generally more desirable, suggesting $\beta$ values should be close to 1. For `distance_next`, a lower value is preferable, so $\beta$ should be close to 0.
+
+Given the above considerations and without loss of generality, let's assign values based on the relative importance of the metrics for the LRS problem.
+
+- Assign higher $\alpha$ values to `normalized_length` and `opportunity` since they directly impact the LRS length.
+- For `distance_next`, a lower value is better, so its $\beta$ should reflect a preference for lower values.
+
+Let's consider a distribution where `normalized_length` and `opportunity` are given more weight.
+
+alpha_1=0.3
+alpha_2=0.4
+alpha_3=0.15
+alpha_4=0.15
+beta_1=0.8
+beta_2=0.8
+beta_3=0.2
+beta_4=0.7

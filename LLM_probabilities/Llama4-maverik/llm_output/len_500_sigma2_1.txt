@@ -1,0 +1,25 @@
+To determine the appropriate values for the alpha and beta parameters, we need to analyze the given Evaluation Graph metrics and understand their impact on the Longest Run Subsequence (LRS) problem. The LRS problem involves selecting a subsequence of runs from the input string such that the total length of the subsequence is maximized, with the constraint that each symbol from the alphabet appears in at most one run in the subsequence.
+
+The given metrics are:
+1. `normalized_length`: The length of the run divided by the total string length.
+2. `opportunity`: Estimated potential contribution of the run to the total LRS, calculated as 1/(1 + gap).
+3. `distance_next`: Normalized distance to the next occurrence of the same symbol.
+4. `local_density`: Frequency of the character in the entire string divided by its total length.
+
+The influence of a node (run) is calculated using the formula:
+\[ \text{Influence(N)} = \text{sigmoid}\left(\alpha_1 \cdot (1 - (\beta_1 - normalized-length)) + \alpha_2 \cdot (1 - (\beta_2 - opportunity)) + \alpha_3 \cdot (1 - (\beta_3 - distance-next)) + \alpha_4 \cdot (1 - (\beta_4 - local_density))\right) \]
+
+To maximize the influence, the alpha values should be distributed such that they prioritize the most relevant metrics for the LRS problem, and the beta values should be set to reflect the desirable range for each metric.
+
+For the LRS problem, `normalized_length` and `opportunity` are likely to be more relevant as they directly relate to the length and potential contribution of a run. `distance_next` can also be important as it affects the non-overlap constraint. `local_density` might be less directly relevant but still important for understanding the frequency of characters.
+
+Let's assign values based on the relative importance of these metrics for the LRS problem.
+
+alpha_1=0.3
+alpha_2=0.3
+alpha_3=0.2
+alpha_4=0.2
+beta_1=0.5
+beta_2=0.5
+beta_3=0.2
+beta_4=0.5

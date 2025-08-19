@@ -1,0 +1,30 @@
+To determine the appropriate values for the alpha and beta parameters, we need to understand the significance of each metric in the context of the Longest Run Subsequence (LRS) problem. The metrics provided are normalized_length, opportunity, distance_next, and local_density. 
+
+1. **normalized_length**: This metric is crucial because longer runs contribute more to the total length of the LRS. Thus, it should be given significant weight.
+2. **opportunity**: This represents the potential contribution of a run to the LRS, considering the gap between runs of the same symbol. A higher opportunity value indicates a more favorable run. Hence, it is also an important metric.
+3. **distance_next**: This metric indicates how far the next occurrence of the same symbol is. A smaller distance might be preferable as it potentially allows for a more compact or relevant subsequence. However, its importance might be less than that of normalized_length and opportunity.
+4. **local_density**: This measures the frequency of a character in the string. While it provides context, its direct influence on selecting runs for LRS might be less critical than the length of the runs or their opportunity.
+
+Given these considerations, we can infer that **normalized_length** and **opportunity** are likely to be the most important metrics for the LRS problem, as they directly relate to the length and potential contribution of the runs. 
+
+Let's assign:
+- **alpha_1 = 0.4** (for normalized_length, as it's very important)
+- **alpha_2 = 0.3** (for opportunity, as it's also very significant)
+- **alpha_3 = 0.15** (for distance_next, considering it's somewhat important but less than the first two)
+- **alpha_4 = 0.15** (for local_density, as it provides context but is less directly influential)
+
+For beta values, which represent the desirable results for each metric:
+- A higher **normalized_length** is desirable, so **beta_1** should be high (e.g., 0.8), indicating that values closer to 1 are more favorable.
+- A higher **opportunity** is desirable, so **beta_2** should also be high (e.g., 0.8).
+- A lower **distance_next** is generally more desirable as it indicates closer subsequent runs, so **beta_3** should be low (e.g., 0.2), indicating that lower values are more favorable.
+- **local_density**'s desirability might depend on the context, but generally, a balanced density is good. However, since higher density might be slightly more favorable for LRS as it indicates more frequent characters, **beta_4** could be moderate to high (e.g., 0.6).
+
+Thus, the values could be:
+alpha_1=0.4
+alpha_2=0.3
+alpha_3=0.15
+alpha_4=0.15
+beta_1=0.8
+beta_2=0.8
+beta_3=0.2
+beta_4=0.6

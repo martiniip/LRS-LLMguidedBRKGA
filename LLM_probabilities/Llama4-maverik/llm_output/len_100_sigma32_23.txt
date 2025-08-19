@@ -1,0 +1,26 @@
+To determine the appropriate values for the alpha and beta parameters, we need to analyze the given Evaluation Graph metrics and understand their impact on the Longest Run Subsequence (LRS) problem. The LRS problem involves selecting a subsequence of runs from the input string S, such that the total length of the subsequence is maximized, and each symbol appears in at most one run.
+
+The given metrics are:
+1. normalized_length: The length of the run divided by the total string length.
+2. opportunity: Estimated potential contribution of the run to the total LRS, calculated as 1/(1 + gap).
+3. distance_next: Normalized distance to the next occurrence of the same symbol.
+4. local_density: Frequency of the character in the entire string divided by its total length.
+
+For the LRS problem, a run with a higher normalized_length is more desirable because it contributes more to the total length of the subsequence. Thus, a higher value for normalized_length should positively influence the selection.
+
+The opportunity metric is directly related to the potential contribution of a run to the LRS. A higher opportunity value indicates a higher potential contribution, making it more desirable.
+
+A larger distance_next indicates a farther next occurrence of the same symbol, which is generally more desirable because it reduces the likelihood of violating the condition that each symbol appears in at most one run.
+
+local_density indicates the frequency of a character. A higher local_density might not be directly desirable because it doesn't necessarily contribute to the length or the validity of the LRS.
+
+Based on the above analysis, we can infer the relative importance of each metric.
+
+alpha_1=0.3
+alpha_2=0.3
+alpha_3=0.2
+alpha_4=0.2
+beta_1=0.7
+beta_2=0.8
+beta_3=0.4
+beta_4=0.5

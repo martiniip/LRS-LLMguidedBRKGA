@@ -1,0 +1,48 @@
+To determine the appropriate values for the alpha and beta parameters, we need to analyze the given Evaluation Graph metrics and understand how they influence the selection process for the Longest Run Subsequence problem.
+
+1. **Understanding the Metrics**:
+   - `normalized_length`: The length of the run divided by the total string length. A higher value is generally more desirable as it contributes more to the total length of the subsequence.
+   - `opportunity`: Estimated potential contribution of the run to the total LRS, calculated as $1/(1+gap)$. A higher opportunity value indicates a potentially greater contribution to the LRS.
+   - `distance_next`: Normalized distance to the next occurrence of the same symbol. A smaller distance might be preferable to avoid overlapping runs and to keep the sequence coherent.
+   - `local_density`: Frequency of the character in the entire string divided by its total length. This metric might help in understanding the distribution and potential repetition of characters.
+
+2. **Analyzing the Influence Equation**:
+   The given equation calculates the influence of a node based on the sigmoid function of a weighted sum of its metrics. The sigmoid function maps the input to a value between 0 and 1, making it suitable for representing a probability or influence.
+
+3. **Determining Alpha and Beta Values**:
+   - **Alpha ($\alpha$) values** represent the weighting coefficients for each metric. The sum of all $\alpha$ values must equal 1. The distribution of these values depends on the relative importance of each metric in determining the influence of a node.
+   - **Beta ($\beta$) values** are factors that indicate the desirable results for each metric. They serve as a kind of threshold or reference point.
+
+Given the nature of the Longest Run Subsequence problem, we prioritize metrics that directly contribute to the length and coherence of the subsequence.
+
+- `normalized_length` and `opportunity` are directly related to the length and potential contribution of a run to the LRS. Thus, they should have significant weights.
+- `distance_next` is important for avoiding overlap and ensuring the runs are distinct, so it should also be considered.
+- `local_density` provides context about the character's frequency, which might be less directly influential but still relevant.
+
+Let's assign:
+alpha_1=0.3
+alpha_2=0.4
+alpha_3=0.2
+alpha_4=0.1
+
+For beta values, we consider what makes a metric desirable:
+- For `normalized_length`, a higher value is better, so $\beta_1$ should be high, e.g., 0.8.
+- For `opportunity`, higher is better, suggesting $\beta_2 = 0.8$.
+- For `distance_next`, lower is better, so $\beta_3$ should be low, e.g., 0.2.
+- For `local_density`, the impact is less straightforward, but a moderate value might be desirable, so $\beta_4 = 0.5$.
+
+Thus, 
+beta_1=0.8
+beta_2=0.8
+beta_3=0.2
+beta_4=0.5
+
+The final answer is:
+alpha_1=0.3
+alpha_2=0.4
+alpha_3=0.2
+alpha_4=0.1
+beta_1=0.8
+beta_2=0.8
+beta_3=0.2
+beta_4=0.5

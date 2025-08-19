@@ -1,0 +1,33 @@
+To determine the appropriate values for the alpha and beta parameters, we need to analyze the given data and understand how each metric influences the selection process for the Longest Run Subsequence (LRS) problem.
+
+1. **Understanding the Metrics**:
+   - **normalized_length**: The length of a run divided by the total string length. Longer runs are generally more desirable as they contribute more to the total length of the LRS.
+   - **opportunity**: Estimated potential contribution of the run to the total LRS, calculated as 1/(1 + gap). Higher opportunity values indicate a higher potential contribution.
+   - **distance_next**: Normalized distance to the next occurrence of the same symbol. A smaller distance indicates that the next occurrence is closer, potentially allowing for a longer subsequence if the current run is selected.
+   - **local_density**: Frequency of the character in the entire string divided by its total length. This metric can indicate how common a character is and thus how likely it is to appear in multiple runs.
+
+2. **Analyzing the Influence**:
+   - For LRS, we want to maximize the total length, so **normalized_length** is crucial.
+   - **opportunity** is directly related to the potential contribution to LRS, making it important.
+   - **distance_next** affects the ability to select non-overlapping runs; a smaller distance might be more favorable as it indicates proximity to the next potential run.
+   - **local_density** can influence the selection by indicating the frequency of characters, but its direct impact on LRS might be less compared to the length and opportunity.
+
+3. **Assigning Alpha Values**:
+   - Given the importance of **normalized_length** and **opportunity** in directly contributing to or indicating the potential of a run, they should have higher alpha values.
+   - **distance_next** is also important as it affects the feasibility of selecting subsequent runs.
+   - **local_density** is relatively less direct in its influence on the LRS length.
+
+4. **Assigning Beta Values**:
+   - Beta values indicate the desirable range for each metric. For **normalized_length** and **opportunity**, higher values are desirable, so beta should be close to 1.
+   - For **distance_next**, a lower value is desirable, indicating beta should be close to 0.
+   - For **local_density**, the desirable value isn't as straightforward, but a moderate value might be considered favorable.
+
+Given these considerations and without loss of generality or specific calculations provided in the steps due to the format constraint, a plausible distribution could be:
+alpha_1=0.3
+alpha_2=0.3
+alpha_3=0.2
+alpha_4=0.2
+beta_1=0.8
+beta_2=0.7
+beta_3=0.2
+beta_4=0.5

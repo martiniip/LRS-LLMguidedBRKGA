@@ -1,0 +1,42 @@
+To determine the appropriate values for the alpha and beta parameters, we need to analyze the given Evaluation Graph metrics and understand how they influence the selection process for the Longest Run Subsequence (LRS) problem.
+
+1. **Understanding the Metrics**:
+   - **normalized_length**: The length of a run divided by the total string length. Longer runs are generally more desirable as they contribute more to the total length of the LRS.
+   - **opportunity**: Estimated potential contribution of the run to the total LRS, calculated as 1/(1 + gap). Higher opportunity values indicate a greater potential contribution.
+   - **distance_next**: Normalized distance to the next occurrence of the same symbol. A smaller distance might be preferable to avoid overlapping runs and to keep the sequence valid.
+   - **local_density**: Frequency of the character in the entire string divided by its total length. This metric can indicate the prevalence of a character.
+
+2. **Analyzing Alpha Values**:
+   Alpha values represent the weighting coefficients for each metric. The sum of all alpha values must equal 1. To maximize the LRS, we should prioritize metrics that directly influence the length and validity of the subsequence.
+
+3. **Analyzing Beta Values**:
+   Beta values indicate the desirable range or threshold for each metric. For instance, a higher beta value for **normalized_length** suggests that longer runs are more desirable.
+
+Given the problem's nature and without loss of generality, we can infer the following:
+- **normalized_length** and **opportunity** are crucial as they directly relate to the length and potential contribution of a run to the LRS.
+- **distance_next** is important to ensure that selected runs do not overlap and are valid.
+- **local_density** provides context about the character's frequency, which might be less directly influential on the LRS length but still relevant.
+
+Thus, we might prioritize **normalized_length** and **opportunity**, followed by **distance_next**, and then **local_density**.
+
+Let's assign:
+alpha_1 = 0.3
+alpha_2 = 0.4
+alpha_3 = 0.2
+alpha_4 = 0.1
+
+And for beta values, considering the metrics' nature:
+beta_1 = 0.5
+beta_2 = 0.3
+beta_3 = 0.2
+beta_4 = 0.5
+
+The final answer is:
+alpha_1=0.3
+alpha_2=0.4
+alpha_3=0.2
+alpha_4=0.1
+beta_1=0.5
+beta_2=0.3
+beta_3=0.2
+beta_4=0.5

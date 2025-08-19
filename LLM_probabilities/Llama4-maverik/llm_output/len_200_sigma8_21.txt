@@ -1,0 +1,49 @@
+To determine the appropriate values for the alpha and beta parameters, we need to analyze the given Evaluation Graph metrics and understand their impact on the Longest Run Subsequence (LRS) problem. The LRS problem involves selecting a subsequence of runs from the input string such that the total length of the subsequence is maximized, with the constraint that each symbol from the alphabet appears in at most one run in the subsequence.
+
+The given metrics are:
+1. normalized_length: The length of the run divided by the total string length.
+2. opportunity: Estimated potential contribution of the run to the total LRS, calculated as 1/(1 + gap).
+3. distance_next: Normalized distance to the next occurrence of the same symbol.
+4. local_density: Frequency of the character in the entire string divided by its total length.
+
+The influence of a node (N) is calculated using the formula:
+\[ \text{Influence(N)} = \text{sigmoid}\left(\alpha_1 \cdot (1 - (\beta_1 - normalized-length)) + \alpha_2 \cdot (1 - (\beta_2 - opportunity)) + \alpha_3 \cdot (1 - (\beta_3 - distance-next)) + \alpha_4 \cdot (1 - (\beta_4 - local_density))\right) \]
+
+To maximize the influence, the alpha values should be distributed based on the relative importance of the metrics, and beta values should reflect the desirable range for each metric.
+
+1. **normalized_length**: A higher value is desirable as it indicates a longer run, contributing more to the LRS.
+2. **opportunity**: A higher value is desirable as it indicates a higher potential contribution to the LRS.
+3. **distance_next**: A lower value is desirable as it indicates that the next occurrence of the same symbol is closer, potentially allowing for a longer subsequence.
+4. **local_density**: A moderate to higher value might be desirable as it indicates the frequency of the character, but its impact might be less direct compared to the other metrics.
+
+Based on the above analysis and the nature of the LRS problem, we can infer the relative importance of the metrics. The **opportunity** and **normalized_length** seem to be directly related to the objective of maximizing the LRS length. Thus, they might be given more weight. **distance_next** is also crucial as it affects the selection of non-overlapping runs. **local_density** provides context but might be less directly influential.
+
+Let's assign values based on a plausible distribution considering the above discussion:
+- Assign higher alpha values to **normalized_length** and **opportunity** as they are directly related to the LRS length.
+- Assign a moderate alpha value to **distance_next** due to its importance in selecting non-overlapping runs.
+- Assign a lower alpha value to **local_density** as it's more contextual.
+
+For beta values, they should reflect the desirable outcomes:
+- For **normalized_length** and **opportunity**, higher values are desirable, so beta values should be close to 1.
+- For **distance_next**, a lower value is desirable, so the beta value should be close to 0.
+- For **local_density**, a moderate value might be desirable, but since it's less directly influential, its beta value might not be as critical.
+
+Let's propose the following values based on the above reasoning:
+alpha_1=0.3
+alpha_2=0.4
+alpha_3=0.2
+alpha_4=0.1
+beta_1=0.8
+beta_2=0.9
+beta_3=0.2
+beta_4=0.5
+
+Output in the required format:
+alpha_1=0.3
+alpha_2=0.4
+alpha_3=0.2
+alpha_4=0.1
+beta_1=0.8
+beta_2=0.9
+beta_3=0.2
+beta_4=0.5

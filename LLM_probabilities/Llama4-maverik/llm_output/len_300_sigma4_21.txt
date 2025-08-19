@@ -1,0 +1,39 @@
+To determine the appropriate values for the alpha and beta parameters, we need to analyze the given Evaluation Graph metrics and understand their impact on the Longest Run Subsequence (LRS) problem. The LRS problem involves selecting a subsequence of runs from the input string such that the total length of the subsequence is maximized, with the constraint that each symbol from the alphabet appears in at most one run in the subsequence.
+
+The given metrics are:
+1. `normalized_length`: The length of the run divided by the total string length.
+2. `opportunity`: Estimated potential contribution of the run to the total LRS, calculated as 1/(1 + gap).
+3. `distance_next`: Normalized distance to the next occurrence of the same symbol.
+4. `local_density`: Frequency of the character in the entire string divided by its total length.
+
+The influence of a node (run) is calculated using a sigmoid function that combines these metrics with alpha and beta parameters. The alpha parameters weight the importance of each metric, and the beta parameters represent the desirable values or thresholds for these metrics.
+
+Given the problem's constraints and objectives, we can infer the following:
+- `normalized_length` is important because longer runs contribute more to the total length of the LRS.
+- `opportunity` is crucial as it directly relates to the potential contribution of a run to the LRS.
+- `distance_next` is significant because a smaller distance to the next occurrence of the same symbol might indicate a higher likelihood of selecting runs with the same symbol, which is undesirable.
+- `local_density` could be relevant as it indicates the frequency of a character, potentially influencing the selection of runs.
+
+To maximize the LRS, we want to prioritize runs with high `normalized_length` and `opportunity`, and potentially those with lower `distance_next` to avoid consecutive or close occurrences of the same symbol. `local_density` might be less directly influential but could help in assessing the overall distribution of characters.
+
+Let's assign values based on the relative importance of these metrics for the LRS problem:
+- `alpha_1 = 0.3` for `normalized_length`, as it's directly related to the length of the LRS.
+- `alpha_2 = 0.4` for `opportunity`, since it estimates the potential contribution to LRS.
+- `alpha_3 = 0.2` for `distance_next`, as managing the distance between occurrences of the same symbol is important.
+- `alpha_4 = 0.1` for `local_density`, assuming it's less directly influential on the LRS length.
+
+For beta values, which represent desirable thresholds:
+- `beta_1 = 0.5` for `normalized_length`, suggesting that runs longer than half the average length are desirable.
+- `beta_2 = 0.2` for `opportunity`, indicating that higher opportunity values are favorable.
+- `beta_3 = 0.1` for `distance_next`, suggesting that smaller distances are less desirable, hence a low beta value.
+- `beta_4 = 0.3` for `local_density`, assuming a moderate frequency is somewhat desirable.
+
+Thus, the parameter values are:
+alpha_1=0.3
+alpha_2=0.4
+alpha_3=0.2
+alpha_4=0.1
+beta_1=0.5
+beta_2=0.2
+beta_3=0.1
+beta_4=0.3

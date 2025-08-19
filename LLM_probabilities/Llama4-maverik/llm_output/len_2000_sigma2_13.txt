@@ -1,0 +1,33 @@
+To determine the appropriate values for the alpha and beta parameters, we need to analyze the given Evaluation Graph metrics and understand their impact on the Longest Run Subsequence (LRS) problem. The LRS problem involves selecting runs (maximal sequences of consecutive identical characters) such that the total length of the selected runs is maximized, and no symbol appears in more than one run.
+
+The given metrics are:
+1. `normalized_length`: The length of the run divided by the total string length.
+2. `opportunity`: Estimated potential contribution of the run to the total LRS, calculated as 1/(1 + gap).
+3. `distance_next`: Normalized distance to the next occurrence of the same symbol.
+4. `local_density`: Frequency of the character in the entire string divided by its total length.
+
+The influence of a node (run) is calculated using the formula:
+\[ \text{Influence(N)} = \text{sigmoid}\left(\alpha_1 \cdot (1 - (\beta_1 - normalized-length)) + \alpha_2 \cdot (1 - (\beta_2 - opportunity)) + \alpha_3 \cdot (1 - (\beta_3 - distance-next)) + \alpha_4 \cdot (1 - (\beta_4 - local_density))\right) \]
+
+To maximize the influence, the terms inside the sigmoid function should be maximized. This implies that the alpha and beta values should be chosen such that the expression inside the sigmoid is maximized for desirable runs.
+
+For the LRS problem, a desirable run is one that is long (`normalized_length` is high), has a high `opportunity`, is far from the next occurrence of the same symbol (`distance_next` is high), and has a reasonable `local_density`.
+
+Let's assign values based on the understanding that:
+- `normalized_length` and `opportunity` are directly related to the desirability of a run.
+- `distance_next` is important as it indicates the potential for non-overlapping runs.
+- `local_density` might not be as directly influential but still relevant.
+
+Assuming equal importance for simplicity, we could start with distributing alpha values equally among the four metrics. However, the actual distribution should reflect the relative importance of each metric in the context of the LRS problem.
+
+For beta values, they should be such that they maximize the influence for desirable values of the metrics. For instance, a high `normalized_length` is desirable, so \(\beta_1\) should be close to 1.
+
+Given the constraints and the need for a balanced approach:
+alpha_1=0.3
+alpha_2=0.3
+alpha_3=0.2
+alpha_4=0.2
+beta_1=0.8
+beta_2=0.7
+beta_3=0.6
+beta_4=0.5

@@ -1,0 +1,28 @@
+To determine the appropriate values for the alpha and beta parameters, we need to analyze the given Evaluation Graph metrics and understand how they influence the selection process for the Longest Run Subsequence (LRS) problem.
+
+1. **Understanding the Metrics**:
+   - **normalized_length**: The length of the run divided by the total string length. Longer runs are generally more desirable as they contribute more to the total length of the LRS.
+   - **opportunity**: Estimated potential contribution of the run to the total LRS, calculated as 1/(1 + gap). Higher opportunity values indicate a greater potential contribution.
+   - **distance_next**: Normalized distance to the next occurrence of the same symbol. A smaller distance might be desirable as it indicates a potential for a longer subsequence without overlapping symbols.
+   - **local_density**: Frequency of the character in the entire string divided by its total length. This metric can indicate the prevalence of a character.
+
+2. **Analyzing Alpha Values**:
+   Alpha values represent the weighting coefficients for each metric. The sum of all alpha values must equal 1. To maximize the LRS, we should prioritize metrics that directly contribute to the length or feasibility of the subsequence.
+
+3. **Analyzing Beta Values**:
+   Beta values indicate the desirable range or threshold for each metric. For instance, a higher beta value for **normalized_length** would favor longer runs.
+
+Given the task's constraints and the need to directly infer alpha and beta values without explicit calculation steps provided in the question, a typical approach involves analyzing the impact of each metric on the LRS problem and assigning weights accordingly.
+
+For the LRS problem, **normalized_length** and **opportunity** seem crucial as they directly relate to the length and potential contribution of runs to the LRS. **distance_next** could be important for ensuring that the selected runs do not overlap or are not too close, potentially allowing for a longer subsequence. **local_density** might be less directly influential but could help in understanding the character distribution.
+
+Thus, a plausible distribution could prioritize **opportunity** and **normalized_length**, followed by **distance_next**, and then **local_density**.
+
+alpha_1=0.25
+alpha_2=0.35
+alpha_3=0.20
+alpha_4=0.20
+beta_1=0.7
+beta_2=0.8
+beta_3=0.4
+beta_4=0.5

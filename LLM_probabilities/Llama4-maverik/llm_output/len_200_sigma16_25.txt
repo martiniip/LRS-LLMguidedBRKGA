@@ -1,0 +1,37 @@
+To determine the appropriate values for the alpha and beta parameters, we need to analyze the given Evaluation Graph metrics and understand how they relate to the Longest Run Subsequence (LRS) problem. The LRS problem involves selecting a subsequence of runs from the input string S, such that the total length of the subsequence is maximized, and each symbol appears in at most one run.
+
+The given metrics are:
+1. normalized_length: The length of the run divided by the total string length.
+2. opportunity: Estimated potential contribution of the run to the total LRS.
+3. distance_next: Normalized distance to the next occurrence of the same symbol.
+4. local_density: Frequency of the character in the entire string divided by its total length.
+
+The influence of a node (run) is calculated using a sigmoid function that combines these metrics with alpha and beta parameters. Alpha parameters weight the importance of each metric, and beta parameters indicate the desirable values or thresholds for these metrics.
+
+For the LRS problem, a longer run (higher normalized_length) is generally more desirable as it contributes more to the total length of the subsequence. A higher opportunity value indicates a greater potential contribution to the LRS, making it more desirable. A smaller distance_next value is preferable because it indicates that the next occurrence of the same symbol is closer, potentially allowing for a longer subsequence without violating the constraint of not having overlapping runs of the same symbol. A moderate local_density might be desirable as it balances the frequency of the character.
+
+Given these considerations, we can infer the following about the alpha and beta values:
+- Alpha values should reflect the relative importance of each metric. For LRS, normalized_length and opportunity are likely crucial, suggesting higher alpha values for these metrics.
+- Beta values should indicate the desirable threshold for each metric. For normalized_length, opportunity, and local_density, higher values might be more desirable, suggesting beta values that make higher metric values more favorable. For distance_next, a lower value is more desirable, so the beta value should reflect this.
+
+Let's assign values based on these principles:
+- alpha_1 = 0.3 (normalized_length is important but not the only factor)
+- alpha_2 = 0.4 (opportunity is crucial as it directly relates to the potential contribution to LRS)
+- alpha_3 = 0.2 (distance_next is important for avoiding overlap but slightly less critical than opportunity)
+- alpha_4 = 0.1 (local_density is somewhat important for balancing character frequencies but is the least critical among these)
+
+For beta values, considering the desirable outcomes:
+- beta_1 = 0.7 (a moderate to high normalized_length is desirable)
+- beta_2 = 0.8 (high opportunity is very desirable)
+- beta_3 = 0.3 (low distance_next is desirable, so a low beta value indicates that lower distances are favored)
+- beta_4 = 0.6 (a moderate local_density is desirable)
+
+Thus, the solution is:
+alpha_1=0.3
+alpha_2=0.4
+alpha_3=0.2
+alpha_4=0.1
+beta_1=0.7
+beta_2=0.8
+beta_3=0.3
+beta_4=0.6

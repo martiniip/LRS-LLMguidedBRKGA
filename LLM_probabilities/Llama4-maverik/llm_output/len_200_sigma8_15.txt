@@ -1,0 +1,39 @@
+To determine the appropriate values for the alpha and beta parameters, we need to analyze the given data and understand how each metric influences the selection process for the Longest Run Subsequence (LRS) problem.
+
+1. **Understanding the Metrics**:
+   - **normalized_length**: The length of a run divided by the total string length. Longer runs are generally more desirable as they contribute more to the total length of the LRS.
+   - **opportunity**: Estimated potential contribution of the run to the total LRS, calculated as 1/(1 + gap). Higher opportunity values indicate a higher potential contribution.
+   - **distance_next**: Normalized distance to the next occurrence of the same symbol. A smaller distance might be preferable to avoid overlapping runs and to keep the sequence valid.
+   - **local_density**: Frequency of the character in the entire string divided by its total length. Higher local density might indicate a more frequent character, potentially making it more valuable for the LRS.
+
+2. **Analyzing the Influence Equation**:
+   The given equation calculates the influence of a node (run) based on its characteristics. The sigmoid function ensures the output is between 0 and 1, representing the probability or influence of selecting the run.
+
+3. **Determining Alpha and Beta Values**:
+   - **Alpha (\(\alpha\)) values** represent the relative importance of each metric. The sum of all \(\alpha\) values must be 1.
+   - **Beta (\(\beta\)) values** are the thresholds or desirable values for each metric. They are used to scale the metrics.
+
+Given the LRS problem's nature, we prioritize:
+- **opportunity** and **normalized_length** as they directly relate to the length and potential contribution of the runs.
+- **local_density** is also important as it indicates the frequency of characters, potentially influencing the selection.
+
+Let's assign:
+- Higher \(\alpha\) values to **opportunity** and **normalized_length**, as they are directly related to the problem's objective.
+- A moderate \(\alpha\) value to **local_density** due to its relevance to character frequency.
+- A lower \(\alpha\) value to **distance_next**, as while important, it's more about validity and less about direct contribution to length.
+
+For **beta** values, we consider what makes a metric's value desirable:
+- For **normalized_length** and **opportunity**, higher values are better, so \(\beta\) should be around or less than the average or median of these metrics to encourage higher values.
+- For **distance_next**, a lower value is generally better to avoid overlap, so \(\beta\) should be low.
+- For **local_density**, a higher value is better, indicating a more frequent character.
+
+Let's consider a balanced distribution for \(\alpha\) and reasonable thresholds for \(\beta\) based on typical values in the data.
+
+alpha_1=0.25
+alpha_2=0.35
+alpha_3=0.10
+alpha_4=0.30
+beta_1=0.4
+beta_2=0.2
+beta_3=0.1
+beta_4=0.15

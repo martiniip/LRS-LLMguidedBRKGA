@@ -1,0 +1,43 @@
+To determine the appropriate values for the alpha and beta parameters, we need to analyze the given data and understand how each metric influences the selection process for the Longest Run Subsequence (LRS) problem.
+
+1. **Understanding the Metrics**:
+   - **normalized_length**: The length of a run divided by the total string length. Longer runs are generally more desirable as they contribute more to the total length of the LRS.
+   - **opportunity**: Estimated potential contribution of the run to the total LRS, calculated as 1/(1+gap). Higher opportunity values indicate a higher potential contribution.
+   - **distance_next**: Normalized distance to the next occurrence of the same symbol. A smaller distance indicates that the next occurrence is closer, potentially allowing for a longer subsequence if the symbol is not repeated too quickly.
+   - **local_density**: Frequency of the character in the entire string divided by its total length. This metric can indicate how common a character is.
+
+2. **Analyzing the Influence Equation**:
+   The given equation calculates the influence of a node (run) based on its characteristics. The sigmoid function ensures the output is between 0 and 1, representing the probability or influence of selecting the run.
+
+3. **Determining Alpha and Beta Values**:
+   - **Alpha (\(\alpha\)) values** represent the relative importance of each metric. The sum of all \(\alpha\) values must be 1.
+   - **Beta (\(\beta\)) values** are the thresholds or reference points for each metric, indicating the desirable level for each.
+
+Given the LRS problem's nature, we want to prioritize runs that are long (**normalized_length**), have a high potential contribution (**opportunity**), are not too close to the next occurrence of the same symbol (**distance_next**), and are of a character that is not too frequent (**local_density** might be less important or inversely related).
+
+Let's assign:
+- High importance to **opportunity** and **normalized_length** because they directly relate to the length and potential of the subsequence.
+- Moderate importance to **distance_next** as it affects the ability to include subsequent runs of the same symbol.
+- Less importance to **local_density** as it's more about the character's frequency rather than the run's direct contribution.
+
+Thus, a possible distribution could be:
+- \(\alpha_1 = 0.25\) for **normalized_length**
+- \(\alpha_2 = 0.4\) for **opportunity** (high importance)
+- \(\alpha_3 = 0.2\) for **distance_next**
+- \(\alpha_4 = 0.15\) for **local_density**
+
+For **beta** values, they should reflect desirable thresholds:
+- \(\beta_1 = 0.5\) for **normalized_length**, suggesting a desirable run length is around half the total length or more.
+- \(\beta_2 = 0.2\) for **opportunity**, indicating a high opportunity is desirable.
+- \(\beta_3 = 0.1\) for **distance_next**, suggesting a relatively small distance to the next occurrence is tolerable or desirable.
+- \(\beta_4 = 0.05\) for **local_density**, indicating lower density (less frequent characters) is more desirable.
+
+Therefore, the output should be:
+alpha_1=0.25
+alpha_2=0.4
+alpha_3=0.2
+alpha_4=0.15
+beta_1=0.5
+beta_2=0.2
+beta_3=0.1
+beta_4=0.05

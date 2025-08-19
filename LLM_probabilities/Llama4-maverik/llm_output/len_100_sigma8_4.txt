@@ -1,0 +1,38 @@
+To determine the appropriate values for the alpha and beta parameters, we need to analyze the given Evaluation Graph metrics and understand how they influence the selection process for the Longest Run Subsequence (LRS) problem.
+
+1. **Understanding the Metrics**:
+   - **normalized_length**: The length of the run divided by the total string length. A higher value is generally more desirable as it contributes more to the total length of the LRS.
+   - **opportunity**: Estimated potential contribution of the run to the total LRS, calculated as 1/(1+gap). A higher opportunity value indicates a potentially greater contribution to the LRS.
+   - **distance_next**: Normalized distance to the next occurrence of the same symbol. A smaller distance might be preferable to avoid overlapping runs, but the optimal value depends on the balance between selecting runs and avoiding overlaps.
+   - **local_density**: Frequency of the character in the entire string divided by its total length. This metric can indicate the prevalence of a character, potentially influencing the selection based on the character's overall importance.
+
+2. **Analyzing the Influence Equation**:
+   The given equation calculates the influence of a node (run) based on the four metrics, using alpha values to weight their importance and beta values to adjust the desirable outcomes for each metric.
+
+3. **Determining Alpha and Beta Values**:
+   - For **alpha** values, the sum must equal 1. The distribution should reflect the relative importance of each metric. For LRS, **normalized_length** and **opportunity** seem crucial as they directly relate to the length and potential contribution of a run. Thus, they might have higher alpha values.
+   - For **beta** values, they indicate the desirable range for each metric. For instance, a higher **beta** for **normalized_length** suggests that longer runs are more desirable.
+
+Given the problem's constraints and the need to maximize the total length of the LRS without overlapping runs, a plausible distribution could prioritize **opportunity** and **normalized_length**. Assuming **opportunity** is slightly more important due to its direct relation to the potential contribution, followed by **normalized_length**, and then considering **distance_next** to avoid overlaps, we might assign alpha values accordingly.
+
+Let's assign:
+- alpha_1 = 0.25 (normalized_length)
+- alpha_2 = 0.4 (opportunity)
+- alpha_3 = 0.2 (distance_next)
+- alpha_4 = 0.15 (local_density)
+
+For beta values, considering the desirable outcomes:
+- beta_1 = 0.7 (a moderate to high value for normalized_length, indicating a preference for longer runs)
+- beta_2 = 0.8 (a high value for opportunity, suggesting a strong preference for high opportunity values)
+- beta_3 = 0.4 (a moderate value for distance_next, balancing between close and far next occurrences)
+- beta_4 = 0.5 (a neutral value for local_density, indicating no strong bias towards or against prevalent characters)
+
+Thus, the output in the required format is:
+alpha_1=0.25
+alpha_2=0.4
+alpha_3=0.2
+alpha_4=0.15
+beta_1=0.7
+beta_2=0.8
+beta_3=0.4
+beta_4=0.5
