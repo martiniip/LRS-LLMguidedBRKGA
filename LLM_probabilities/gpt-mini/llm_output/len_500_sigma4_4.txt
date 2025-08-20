@@ -1,0 +1,8 @@
+alpha_1=0.35
+alpha_2=0.30
+alpha_3=0.10
+alpha_4=0.25
+beta_1=0.30
+beta_2=0.25
+beta_3=0.05
+beta_4=0.20

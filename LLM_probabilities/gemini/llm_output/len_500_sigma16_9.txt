@@ -1,0 +1,8 @@
+alpha_1=0.1
+alpha_2=0.4
+alpha_3=0.3
+alpha_4=0.2
+beta_1=1.0
+beta_2=1.0
+beta_3=0.0
+beta_4=0.5
