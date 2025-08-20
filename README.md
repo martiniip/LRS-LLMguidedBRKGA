@@ -31,11 +31,11 @@ BAABAABABBAABAABBABBBABAABBBBAAAAAABBAAABBBAABABBABBABBBBABAAABBBAAABAABBAABBABB
 ```bash
 ./brkgallm -i <instance_file> [-p <pop_size>] [-pe <elite_prop>] [-pm <mutant_prop>] [-rhoe <inherit_prob>] [-t <time>] [-tuning] [-stnweb]
 ```
-- `-p`: Population size (default: default value)
-- `-pe`: Elite proportion (default: default value)
-- `-pm`: Mutant proportion (default: default value)
-- `-rhoe`: Elite inheritance probability (default: default value)
-- `-t`: Time limit (default: default value)
+- `-p`: Population size 
+- `-pe`: Elite proportion 
+- `-pm`: Mutant proportion 
+- `-rhoe`: Elite inheritance probability 
+- `-t`: Time limit 
 - `-tuning`: Tuning mode
 - `-stnweb`: stnweb mode
 
